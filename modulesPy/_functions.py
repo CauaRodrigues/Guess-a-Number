@@ -15,13 +15,14 @@ def Levels():
 
     print(
     """
-        Dificuldade:    |Comando:    |Tentativas:  |Números:   
+        Dificuldade:    |Comando:    |Tentativas:   |Números:   
 
-    --- Fácil           |-->> E      |7            |0 à 20     
-    --- Médio           |-->> M      |5            |0 à 40     
-    --- Difícil         |-->> H      |3            |0 à 65 
+    --- Fácil           |-->> E      |07            |0 à 20     
+    --- Médio           |-->> M      |10            |0 à 40     
+    --- Difícil         |-->> H      |15            |0 à 65 
 
     --- Sair            |-->> exit
+    --- Voltar ao Início|-->> exitmod
 
     """)
 
@@ -67,9 +68,18 @@ def Timer():
     print('Tenha paciência...')
     time.sleep(3)
 
-def RandomNumber():
-    number = random.randint(0, 20)
-    return number
+def RandomNumber(chosen_level):
+    if chosen_level == 'E':
+        number = random.randint(0, 20)
+        return number
+    
+    elif chosen_level == 'M':
+        number = random.randint(0, 40)
+        return number
+    
+    elif chosen_level == 'H':
+        number = random.randint(0, 65)
+        return number
 
 def Rules(chosen_level):
 
@@ -107,7 +117,7 @@ def Rules(chosen_level):
             |   Tentativas: 7                                                             |
             |   Números: 0 à 20                                                           |
             |                                                                             |
-            |   Para sair do modo e voltar ao início: -->> exit-mode                      |  
+            |   Para sair do modo e voltar ao início: -->> exitmod                        |  
             |   Para sair do jogo: -->> exit                                              |
             |                                                                             |
             |   Obs: Os comandos para sair podem ser digitados a qualquer momento.        |
@@ -127,10 +137,10 @@ def Rules(chosen_level):
             _______________________________________________________________________________
             |                                                                             |
             |   Dificuldade: Médio                                                        |
-            |   Tentativas: 5                                                             |
+            |   Tentativas: 10                                                             |
             |   Números: 0 à 40                                                           |
             |                                                                             |
-            |   Para sair do modo e voltar ao início: -->> exit-mode                      |  
+            |   Para sair do modo e voltar ao início: -->> exitmod                        |  
             |   Para sair do jogo: -->> exit                                              |
             |                                                                             |
             |   Obs: Os comandos para sair podem ser digitados a qualquer momento.        |
@@ -151,10 +161,10 @@ def Rules(chosen_level):
             _______________________________________________________________________________
             |                                                                             |
             |   Dificuldade: Difícil                                                      |
-            |   Tentativas: 3                                                             |
+            |   Tentativas: 15                                                             |
             |   Números: 0 à 65                                                           |
             |                                                                             |
-            |   Para sair do modo e voltar ao início: -->> exit-mode                      |  
+            |   Para sair do modo e voltar ao início: -->> exitmod                        |  
             |   Para sair do jogo: -->> exit                                              |
             |                                                                             |
             |   Obs: Os comandos para sair podem ser digitados a qualquer momento.        |
@@ -216,7 +226,7 @@ def ComparingNumber(chosen_level, number, chosen_number, attempt_number):
             if attempt_number == 1:
                 print('\n ** Acertou de primeira, parabéns ** \n')
             
-            elif attempt_number == 5:
+            elif attempt_number == 10:
                 print('\n ** Quase perdeu hehe. Parabéns! ** \n')
             
             else:
@@ -243,7 +253,7 @@ def ComparingNumber(chosen_level, number, chosen_number, attempt_number):
             if attempt_number == 1:
                 print('\n ** Acertou de primeira, parabéns ** \n')
             
-            elif attempt_number == 3:
+            elif attempt_number == 15:
                 print('\n ** Quase perdeu hehe. Parabéns! ** \n')
             
             else:
@@ -255,17 +265,20 @@ def ShowData(chosen_level, number, attempt_number, try_list):
 
     if chosen_level == 'E':
         show_level = 'Fácil'
+        try_limit = 7
     
     elif chosen_level == 'M':
         show_level = 'Médio'
+        try_limit = 10
     
     elif chosen_level == 'H':
         show_level = 'Difícil'
+        try_limit = 15
     
     print(
         f'Dificuldade: {show_level}\n'
         f'Número correto: {number}\n'
-        f'Número de Tentativas: {attempt_number} / 7\n'
+        f'Número de Tentativas: {attempt_number} / {try_limit}\n'
         f'Maior número tentado: {max(try_list)}\n'
         f'Menor número tentado: {min(try_list)}\n'
         f'Números tentados:')
